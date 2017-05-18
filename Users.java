@@ -82,19 +82,11 @@ public class Users {
             boolean admin = input.nextBoolean();
             members.get(number).setAdmin(admin);
 
-            members.add(new Users(fornavn, efternavn, age, email, tlf, competition, admin));
-
-            // Skriver til text filen
+            // Gemmer oplysningerne i Members.text
             PrintStream file = new PrintStream(f);
-            members.add(new Users());
-            
             for(int i = 0; i < members.size(); i++)
             {
-                // file.println();   
-                
-                file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge());
-                
-                // ingen linieskift til den sidste person i arraylisten
+                file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() + " " + members.get(i).getPhone() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
                 if(i != members.size() -1)
                 {
                     file.println();
@@ -163,6 +155,11 @@ public class Users {
     public String getEmail() {
         return email;
     }
+
+    public int getPhone() {
+        return phone;
+    }
+
     public String getPaymentmethod() {
         return paymentmethod;
     }
