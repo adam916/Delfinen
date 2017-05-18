@@ -16,20 +16,21 @@ public class User {
     private String paymentmethod;
     private boolean competitionswimmer = false;
     private boolean admin = false ;
+    private boolean activemembership;
 
-    public User(String firstname, String lastname, int age, String email, int phone, boolean competitionswimmer, boolean admin) {
+    public User(String firstname, String lastname, int age, String email, int phone, boolean activemembership, boolean competitionswimmer, boolean admin) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
         this.email = email;
         this.phone = phone;
+        this.activemembership = activemembership;
         this.competitionswimmer = competitionswimmer;
         this.admin = admin;
     }
 
     public User() {
     }
-
 
         public void createMember() {
             try{
@@ -44,7 +45,7 @@ public class User {
 
                 while(scan.hasNextLine())
                 {
-                    members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean()));   
+                    members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
                 }
 
                 System.out.println("Du har valgt at oprette et nyt medlem" );
@@ -63,6 +64,8 @@ public class User {
                 System.out.print("Tast telefonnummer ");
                 int phone = input.nextInt();
 
+                System.out.print("Aktivt medlemsskab? (true/false) ");
+                boolean activemembership = input.nextBoolean();
 
                 System.out.print("Konkurrencesvømmer? (true/false) ");
                 boolean competition = input.nextBoolean();
@@ -71,13 +74,13 @@ public class User {
                 boolean admin = input.nextBoolean();
 
                 // adds the newly made member to our arraylist
-                members.add(new User(firstname, lastname, age, email, phone, competition, admin));
+                members.add(new User(firstname, lastname, age, email, phone, activemembership, competition, admin));
 
                 // Saves the information in our file named Members.text
                 PrintStream file = new PrintStream(f);
                 for(int i = 0; i < members.size(); i++){
                     file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
-                     " " + members.get(i).getPhone() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
+                     " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
                     if(i != members.size() -1)
                     {
                         file.println();
@@ -103,7 +106,7 @@ public class User {
  
             while(scan.hasNextLine())
             {
-                members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean()));   
+                members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
             }
 
             for(int i = 0; i < members.size(); i++)
@@ -133,6 +136,10 @@ public class User {
             System.out.print("Tast telefonnummer ");
             int phone = input.nextInt();
             members.get(number).setPhone(phone);
+
+            System.out.print("Aktivt medlemsskab? (true/false) ");
+            boolean activemembership = input.nextBoolean();
+            members.get(number).setActivemembership(activemembership);
 
             System.out.print("Konkurrencesvømmer? (true/false) ");
             boolean competition = input.nextBoolean();
@@ -196,6 +203,10 @@ public class User {
         this.competitionswimmer = competitionswimmer;
     }
 
+    public void setActivemembership(boolean activemembership) {
+        this.activemembership = activemembership;
+    }
+
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
@@ -228,6 +239,10 @@ public class User {
         return competitionswimmer;
     }
 
+    public boolean getActivemembership() {
+        return activemembership;
+    }
+
     public boolean getAdmin() {
         return admin;
     }
@@ -240,7 +255,7 @@ public class User {
 
     public String toString()
     {
-        return firstname + " " + lastname + " " + age + " " + email + " " + phone + " " + competitionswimmer + " " + admin;
+        return firstname + " " + lastname + " " + age + " " + email + " " + phone + " " + activemembership + " " + competitionswimmer + " " + admin;
     }
 
 }
