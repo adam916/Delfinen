@@ -1,5 +1,5 @@
 import java.util.*;
-public class Statistics{
+public class Statistic{
     private int resultTime;
     private int userId;
     private String disciplin;
