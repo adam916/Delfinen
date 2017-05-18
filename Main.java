@@ -1,8 +1,18 @@
-public class Main {
-    public static void main(String[] args) {
-        
-        Users users1 = new Users();
+public class Main{
 
-        users1.editMembers();
-    }
+
+public static void main(String[] args){
+
+Users user1 = new Users();
+
+user1.createMember();
+
+
+
+
+}
+
+
+
+
 }

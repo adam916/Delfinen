@@ -30,6 +30,79 @@ public class Users {
     public Users() {
     }
 
+
+        public void createMember() {
+        try{
+            Scanner input = new Scanner(System.in);
+
+            File f = new File("Members.txt");
+
+            f.createNewFile();
+
+            Scanner scan = new Scanner(f);
+            ArrayList<Users> members = new ArrayList<Users>();
+ 
+            while(scan.hasNextLine())
+            {
+                members.add(new Users(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean()));   
+            }
+
+            System.out.print ("opret et nyt medlem");
+            System.out.print("Tast fornavn ");
+            String fornavn = input.next();
+            //members.setFirstname(fornavn);
+
+            System.out.print("Tast efternavn ");
+            String efternavn = input.next();
+            //members.setLastname(efternavn);
+            
+            System.out.print("Tast alder ");
+            int age = input.nextInt();
+            //members.setAge(age);
+
+            System.out.print("Tast email ");
+            String email = input.next();
+            //members.setEmail(email);
+
+            System.out.print("Tast telefonnummer ");
+            int tlf = input.nextInt();
+            //members.setPhone(tlf);
+
+            System.out.print("Konkurrencesvømmer? ");
+            boolean competition = input.nextBoolean();
+            //members.setCompetitionswimmer(competition);
+
+            System.out.print("Admin rettigheder? ");
+            boolean admin = input.nextBoolean();
+            //members.setAdmin(admin);
+
+
+            members.add(new Users(fornavn, efternavn, age, email, tlf, competition, admin));
+
+            // Gemmer oplysningerne i Members.text
+            PrintStream file = new PrintStream(f);
+            for(int i = 0; i < members.size(); i++)
+            {
+                file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() + " " + members.get(i).getPhone() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
+                if(i != members.size() -1)
+                {
+                    file.println();
+                }
+            }
+        
+        } catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+
+
+
+
+
+
+
     public void editMembers() {
         try{
             Scanner input = new Scanner(System.in);

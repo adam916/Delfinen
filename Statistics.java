@@ -6,10 +6,13 @@ public class Statistics{
     private int swimplacement;
     private String contest;
 
+    /*
+    private ArrayList<User> users = new ArrayList<User>();
+    private ArrayList<Stat> stats = new ArrayList<Stat>();
+    */
 
 
     public void printTop5(){
-
 
     }
 
