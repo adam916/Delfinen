@@ -3,6 +3,6 @@ public class Main {
         
         Users users1 = new Users();
 
-        users1.addMembers();
+        users1.editMembers();
     }
 }

@@ -30,16 +30,14 @@ public class Users {
     public Users() {
     }
 
-    public void addMembers() {
+    public void editMembers() {
         try{
             Scanner input = new Scanner(System.in);
-            // System.out.println("Hvad skal file hedde");
-            // String navn = input.next();
-            // Læs fra text fil
+
             File f = new File("Members.txt");
-            // Opretter ny fil hvis den ikke er der i forvejen
+
             f.createNewFile();
-            //PrintStream file = new PrintStream(new File("person.txt"));
+
             Scanner scan = new Scanner(f);
             ArrayList<Users> members = new ArrayList<Users>();
  
@@ -48,15 +46,12 @@ public class Users {
                 members.add(new Users(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean()));   
             }
 
-
-            // ArrayListe af personer
-
             for(int i = 0; i < members.size(); i++)
             {
                 System.out.println(i + " " + members.get(i));
             }
              
-            System.out.print ("Hvilken person vil du redigere ");
+            System.out.print ("Hvilket medlem vil du redigere oplysningerne på? ");
             int number = input.nextInt();
 
             System.out.print("Tast fornavn ");
@@ -71,6 +66,23 @@ public class Users {
             int age = input.nextInt();
             members.get(number).setAge(age);
 
+            System.out.print("Tast email ");
+            String email = input.next();
+            members.get(number).setEmail(email);
+
+            System.out.print("Tast telefonnummer ");
+            int tlf = input.nextInt();
+            members.get(number).setPhone(tlf);
+
+            System.out.print("Konkurrencesvømmer? ");
+            boolean competition = input.nextBoolean();
+            members.get(number).setCompetitionswimmer(competition);
+
+            System.out.print("Admin rettigheder? ");
+            boolean admin = input.nextBoolean();
+            members.get(number).setAdmin(admin);
+
+            members.add(new Users(fornavn, efternavn, age, email, tlf, competition, admin));
 
             // Skriver til text filen
             PrintStream file = new PrintStream(f);
@@ -131,6 +143,10 @@ public class Users {
     public void setCompetitionswimmer(boolean competitionswimmer) {
         this.competitionswimmer = competitionswimmer;
     }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
     public void setPaymentmethod(String paymentmethod) {
         this.paymentmethod = paymentmethod;
     }
@@ -164,5 +180,10 @@ public class Users {
     }
 
     // End of getters
+
+    public String toString()
+    {
+        return firstname + " " + lastname + " " + age + " " + email + " " + phone + " " + competitionswimmer + " " + admin;
+    }
 
 }
