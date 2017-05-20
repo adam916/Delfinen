@@ -18,6 +18,8 @@ public class User {
     private boolean admin = false ;
     private boolean activemembership;
 
+    ArrayList<User> members = new ArrayList<User>();
+
     public User(String firstname, String lastname, int age, String email, int phone, boolean activemembership, boolean competitionswimmer, boolean admin) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -32,21 +34,26 @@ public class User {
     public User() {
     }
 
+
+      
         public void createMember() {
+        
             try{
                 Scanner input = new Scanner(System.in);
 
                 File f = new File("Members.txt");
 
-                f.createNewFile();
+               f.createNewFile();
 
-                Scanner scan = new Scanner(f);
+               Scanner scan = new Scanner(f);
                 ArrayList<User> members = new ArrayList<User>();
-
+                
                 while(scan.hasNextLine())
-                {
-                    members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
-                }
+                 {
+                 members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
+                 }
+
+
 
                 System.out.println("Du har valgt at oprette et nyt medlem" );
                 System.out.print("Tast fornavn ");
@@ -94,9 +101,10 @@ public class User {
     }
 
     public void editMember() {
+    Scanner input = new Scanner(System.in);
+       
         try{
-            Scanner input = new Scanner(System.in);
-
+           
             File f = new File("Members.txt");
 
             f.createNewFile();
@@ -116,36 +124,35 @@ public class User {
              
             System.out.print ("Hvilket medlem vil du redigere oplysningerne på? ");
             int number = input.nextInt();
-
-            System.out.print("Tast fornavn ");
+            System.out.print("Tast nyt fornavn ");
             String firstname = input.next();
             members.get(number).setFirstname(firstname);
 
-            System.out.print("Tast efternavn ");
+            System.out.print("Tast nyt efternavn ");
             String lastname = input.next();
             members.get(number).setLastname(lastname);
             
-            System.out.print("Tast alder ");
+            System.out.print("Tast ny alder ");
             int age = input.nextInt();
             members.get(number).setAge(age);
 
-            System.out.print("Tast email ");
+            System.out.print("Tast ny email ");
             String email = input.next();
             members.get(number).setEmail(email);
 
-            System.out.print("Tast telefonnummer ");
+            System.out.print("Tast nyt telefonnummer ");
             int phone = input.nextInt();
             members.get(number).setPhone(phone);
 
-            System.out.print("Aktivt medlemsskab? (true/false) ");
+            System.out.print("ny Aktivt medlemsskab status? (true/false) ");
             boolean activemembership = input.nextBoolean();
             members.get(number).setActivemembership(activemembership);
 
-            System.out.print("Konkurrencesvømmer? (true/false) ");
+            System.out.print("ny Konkurrencesvømmer status? (true/false) ");
             boolean competition = input.nextBoolean();
             members.get(number).setCompetitionswimmer(competition);
 
-            System.out.print("Admin rettigheder? (true/false) ");
+            System.out.print("ny Admin rettigheder status? (true/false) ");
             boolean admin = input.nextBoolean();
             members.get(number).setAdmin(admin);
 
@@ -159,12 +166,67 @@ public class User {
                     file.println();
                 }
             }
-        
+       
             } catch(Exception e)
             {
                 System.out.println(e);
             }
+      
     }
+
+
+    //delete member
+    public void deleteMember(){
+          try{
+            
+            File f = new File("Members.txt");
+
+            f.createNewFile();
+
+            Scanner scan = new Scanner(f);
+            ArrayList<User> members = new ArrayList<User>();
+ 
+            while(scan.hasNextLine())
+            {
+                members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
+            }
+
+           
+        Scanner inputDelete = new Scanner(System.in);
+		for(int i = 0; i < members.size(); i++)
+		{
+		    System.out.println(i + " " + members.get(i));  
+		}
+		System.out.println("enter the fist index of the movie you want deleted");
+		int deleteNumb = inputDelete.nextInt();
+		members.remove(deleteNumb);			
+		System.out.println(" member deleted");
+        PrintStream file = new PrintStream(f);
+        for(int i = 0; i < members.size(); i++)
+        {
+            file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() + " " + members.get(i).getPhone() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
+            if(i != members.size() -1)
+            {
+                file.println();
+            }
+        }
+
+
+        }catch(Exception e) 
+        {
+            System.out.println(e);
+        }
+
+
+
+
+
+
+
+    }
+
+
+
 
     // Admin login with preset password
     public void isAdmin() {

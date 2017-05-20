@@ -1,8 +1,3 @@
-Theis Olsen 21 theisko@hotmail.com 34052600 true false
-Adam Noir 21 adamN@gmaail.com 50505050 false true
-John Nielsen 55 theisko2@hotmail.com 3500206 true false
-Theis Kayser 55 theisko2@hotmail.com 3500206 true false
-Adam Hansen 21 adamN@gmaail.com 50505050 false true
-Kasper Jensen 34 KasperJensen@live.dk 50356270 true false
-bob johnson 22 bob@bob 12345678 true false
-Theis Johnson 75 johnson@lol.dk 30257280 true false
+adam shumiye 27 adam@gmail.com 23424535 false false
+Mads Hansen 32 mads@gmail.com 566432245 false false
+John Johnson 45 john@gmail.com 54345645 false false
