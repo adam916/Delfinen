@@ -1,3 +1,4 @@
-adam shumiye 27 adam@gmail.com 23424535 false false
-Mads Hansen 32 mads@gmail.com 566432245 false false
-John Johnson 45 john@gmail.com 54345645 false false
+adam johnson 24 adam@adam.com 2323 true true false
+egon egon 21 egon@ 32323 true true true
+ole olsen 2323 ole@ole 23242143 false false false
+john madsen 21 john@john.com 2547535 true true true

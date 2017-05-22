@@ -17,6 +17,7 @@ public class User {
     private boolean competitionswimmer = false;
     private boolean admin = false ;
     private boolean activemembership;
+    private Statistic statistic;
 
     ArrayList<User> members = new ArrayList<User>();
 
@@ -161,7 +162,8 @@ public class User {
             PrintStream file = new PrintStream(f);
             for(int i = 0; i < members.size(); i++)
             {
-                file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() + " " + members.get(i).getPhone() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
+                 file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
+                     " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
                 if(i != members.size() -1)
                 {
                     file.println();
@@ -182,7 +184,7 @@ public class User {
             
             File f = new File("Members.txt");
 
-            f.createNewFile();
+            //f.createNewFile();
 
             Scanner scan = new Scanner(f);
             ArrayList<User> members = new ArrayList<User>();
@@ -192,7 +194,6 @@ public class User {
                 members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
             }
 
-           
         Scanner inputDelete = new Scanner(System.in);
 		for(int i = 0; i < members.size(); i++)
 		{
@@ -205,13 +206,18 @@ public class User {
         PrintStream file = new PrintStream(f);
         for(int i = 0; i < members.size(); i++)
         {
-            file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() + " " + members.get(i).getPhone() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
+             file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
+                     " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
             if(i != members.size() -1)
             {
                 file.println();
             }
         }
 
+        for(int i = 0; i < members.size(); i++)
+		{
+		    System.out.println(i + " " + members.get(i));  
+		}
 
         }catch(Exception e) 
         {
@@ -226,6 +232,45 @@ public class User {
 
     }
 
+
+    
+    public void competitionSwimmers(){
+
+            try{
+            
+            File f = new File("Members.txt");
+
+            //f.createNewFile();
+
+            Scanner scan = new Scanner(f);
+            ArrayList<User> members = new ArrayList<User>();
+ 
+            while(scan.hasNextLine())
+            {
+                members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
+            }
+            
+        
+		for(int i = 0; i < members.size(); i++)
+		{
+		   // members.get(i).getCompetitionswimmer();
+          if( members.get(i).getCompetitionswimmer()==true){
+                System.out.println(i + " " + members.get(i));   
+             }
+        
+		}
+
+
+
+
+        }catch(Exception e) 
+        {
+            System.out.println(e);
+        }
+
+
+
+    }
 
 
 
