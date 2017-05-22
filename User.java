@@ -21,6 +21,18 @@ public class User {
 
     ArrayList<User> members = new ArrayList<User>();
 
+    public User(String firstname, String lastname, int age, String email, int phone, boolean activemembership, boolean competitionswimmer, boolean admin, Statistic statistic) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.email = email;
+        this.phone = phone;
+        this.activemembership = activemembership;
+        this.competitionswimmer = competitionswimmer;
+        this.admin = admin;
+        this.statistic = statistic;
+    }
+
     public User(String firstname, String lastname, int age, String email, int phone, boolean activemembership, boolean competitionswimmer, boolean admin) {
         this.firstname = firstname;
         this.lastname = lastname;
