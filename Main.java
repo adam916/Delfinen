@@ -9,7 +9,7 @@ public class Main{
     public static void main(String[] args){
        
        User user1 = new User();
-       
+
 
        Scanner inputMenu = new Scanner(System.in);
        boolean menuLoop;
@@ -18,7 +18,7 @@ public class Main{
         System.out.println("Tast 2 for at ændret oplysningerne for eksisterende medlem ");
         System.out.println("Tast 3 for at slette et medlem ");
         System.out.println("Tast 4 for at logge af systemet ");
-        System.out.println("Tast 5 for at se konkurencesvømmere ");
+        System.out.println("Tast 5 for at tilføj statistic");
 
         int choice=inputMenu.nextInt();
         if(choice>5||choice<0){
@@ -41,7 +41,7 @@ public class Main{
 
 
                 case  5:
-                user1.competitionSwimmers();
+                    user1.createStatistic();
                 break;
 
                 default:

@@ -1,4 +1,7 @@
-adam johnson 24 adam@adam.com 2323 true true false
-egon egon 21 egon@ 32323 true true true
-ole olsen 2323 ole@ole 23242143 false false false
-john madsen 21 john@john.com 2547535 true true true
+adam ziebe 26 adam@adam.com 23242526 true true false verdensmesterskab bryst 0 12
+egon olsen 49 egon@olsen 44445467 true false false null null 0 0
+john jensen 98 john@jensen 27266554 true true false danmarksmesterskab crawl 0 3
+morten pallesen 64 morten@morten.dk 6556854 true true false OL butterfly 0 14
+ole olsen 14 ole@ole.dk 54643456 true false false null null 0 0
+bob hansen 43 bob@bob.dk 54345654 true false false null null 0 0
+Allan Olsen 54 allan@olsen 43567546 true true false olslomesterskab hundesv›mning 1 12

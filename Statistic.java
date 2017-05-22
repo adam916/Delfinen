@@ -26,50 +26,14 @@ public class Statistic{
 
     }
 
-
-
-  /*
-    public void createStatistic(){
-        try{
-          
-                Scanner input = new Scanner(System.in);
-                File g = new File("Stats.txt");
-                g.createNewFile();
-
-                Scanner scan = new Scanner(g);
-                ArrayList<Statistic> stats = new ArrayList<Statistic>();
-                
-                while(scan.hasNextLine())
-                {
-                    stats.add(new Statistic(scan.nextInt(), scan.nextInt(), scan.next(), scan.nextInt(), scan.next()));   
-                }
-
-
-
-
-                
-                PrintStream file2 = new PrintStream(g);
-                for(int i = 0; i < stats.size(); i++)
-                {
-                    file2.print(stats.get(i).getFirstname() + " " + members.get(i).getLastname());
-                    if(i != stats.size() -1)
-                    {
-                        file2.println();
-                    }
-                }
-                
-            
-
-
-
-
-        }catch(Exception e)
-        {
-            System.out.println(e);
-        }
     
+
+
+  
+    public void createStatistic(){
+      
+
     }
-*/
 
     public void printTop5(){
 
