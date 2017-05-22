@@ -124,6 +124,7 @@ public class User {
              
             System.out.print ("Hvilket medlem vil du redigere oplysningerne på? ");
             int number = input.nextInt();
+
             System.out.print("Tast nyt fornavn ");
             String firstname = input.next();
             members.get(number).setFirstname(firstname);
@@ -144,15 +145,15 @@ public class User {
             int phone = input.nextInt();
             members.get(number).setPhone(phone);
 
-            System.out.print("ny Aktivt medlemsskab status? (true/false) ");
+            System.out.print("ny aktivt medlemsskab status? (true/false) ");
             boolean activemembership = input.nextBoolean();
             members.get(number).setActivemembership(activemembership);
 
-            System.out.print("ny Konkurrencesvømmer status? (true/false) ");
+            System.out.print("ny konkurrencesvømmer status? (true/false) ");
             boolean competition = input.nextBoolean();
             members.get(number).setCompetitionswimmer(competition);
 
-            System.out.print("ny Admin rettigheder status? (true/false) ");
+            System.out.print("ny admin rettigheder status? (true/false) ");
             boolean admin = input.nextBoolean();
             members.get(number).setAdmin(admin);
 
@@ -197,10 +198,10 @@ public class User {
 		{
 		    System.out.println(i + " " + members.get(i));  
 		}
-		System.out.println("enter the fist index of the movie you want deleted");
+		System.out.println("Hvilket medlem skal slettes? ");
 		int deleteNumb = inputDelete.nextInt();
 		members.remove(deleteNumb);			
-		System.out.println(" member deleted");
+		System.out.println("Medlem er nu slettet ");
         PrintStream file = new PrintStream(f);
         for(int i = 0; i < members.size(); i++)
         {
@@ -230,13 +231,13 @@ public class User {
 
     // Admin login with preset password
     public void isAdmin() {
-        System.out.print("Enter password: ");
+        System.out.print("Tast kodeord for at logge ind som admin: ");
         String passWordInput = System.console().readLine();
         if (passWordInput.equals("password")) {
-            System.out.println("You are now logged in as an admin.");
+            System.out.println("Du har du admin rettigheder");
             admin = true;
         }else {
-            System.out.println("Wrong password - You are not an admin.");
+            System.out.println("Forkert kodeord.");
             admin = false;
         }
     }

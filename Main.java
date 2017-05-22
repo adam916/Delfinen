@@ -12,10 +12,10 @@ public class Main{
        Scanner input = new Scanner(System.in);
        boolean menuLoop=false;
        while(menuLoop=true){
-       System.out.println("type 1 to create a new member");
-       System.out.println("type 2 to edit a member");
-       System.out.println("type 3 to delete a member");
-       System.out.println("type 4 to exit system");
+       System.out.println("Tast 1 for at oprette et nyt medlem ");
+       System.out.println("Tast 2 for at ændret oplysningerne for eksisterende medlem ");
+       System.out.println("Tast 3 for at slette et medlem ");
+       System.out.println("Tast 4 for at logge af systemet ");
 
        int choice=input.nextInt();
         
@@ -32,7 +32,7 @@ public class Main{
             break;
 
             case 4:
-            System.out.print("System shutting down..");
+            System.out.print("Du logges nu ud af systemet..");
             System.exit(0);
             break;
 
