@@ -4,16 +4,25 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Arrays;
+import java.lang.Iterable;
 
 
-public class Statistic{
+public class Statistic implements Comparator<Statistic>{
     private int userId;
     private int resultTime;
     private String disciplin;
     private int swimPlacement;
     private String contest;
 
-    
+    ArrayList<Statistic> fastestTime = new ArrayList<Statistic>();
+    ArrayList<Statistic> stats = new ArrayList<Statistic>();
+
+    public Statistic(ArrayList<Statistic> stats) {         
+    this.stats = stats;    
+    }  
 
     public Statistic(int userId, String contest,  String disciplin, int swimPlacement, int resultTime){
         this.userId=userId;
@@ -26,10 +35,6 @@ public class Statistic{
     public Statistic(){
 
     }
-
-    
-
-
   
     public void createStatistic(){
         Scanner input = new Scanner(System.in);
@@ -57,12 +62,8 @@ public class Statistic{
                 stats.add(new Statistic(scan1.nextInt(),scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
             }
 
-            
-            //--- forsøg slut ----
-
             for(int i = 0; i < members.size(); i++)
             {
-                // System.out.println(i + " " + members.get(i).getCompetitionswimmer()==true);
                 if( members.get(i).getCompetitionswimmer()==true){
                     System.out.println("Id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());   
                 }
@@ -73,20 +74,15 @@ public class Statistic{
 
             System.out.print("Tast svømmekonkurrencens navn ");
             String contest = input.next();
-            //members.get(number).setContestName(contest);
 
             System.out.print("Tast svømmedisciplin ");
             String disciplin = input.next();
-            //members.get(number).setDisciplin(disciplin);
             
             System.out.print("Tast svømmerens placering ");
             int swimPlacement = input.nextInt();
-            //members.get(number).setSwimPlacement(swimPlacement);
 
             System.out.print("Tast svømmerens tid ");
             int resultTime = input.nextInt();
-            //members.get(number).setResultTime(resultTime);
-
 
             stats.add(new Statistic(number, contest, disciplin, swimPlacement, resultTime));
 
@@ -107,8 +103,9 @@ public class Statistic{
     }
 
     public void printTop5(){
-
+        
         Scanner input = new Scanner(System.in);
+        
         try{
 
             File g = new File("Stats.txt");
@@ -124,25 +121,40 @@ public class Statistic{
             }
 
 		    System.out.print("Tast hvilken disciplin du vil have en top5 over ");
-            String inputDisciplin = input.nextLine();
-            System.out.println("Du har valgt at få en top 5 over følgende svømmedisciplin: " + inputDisciplin);
-            System.out.println("Hurtigste tid først og faldende tider derfra ");
+            String answer = input.nextLine();
+            System.out.println("Du har valgt at få en top 5 over følgende svømmedisciplin: " + answer);
 
             for(int i = 0; i < stats.size(); i++)
             {
-        
-                if(stats.get(i).getDisciplin().equalsIgnoreCase(inputDisciplin))
-                {
-                    System.out.println(stats.get(i).getResultTime());
-                } 
+                if(stats.get(i).toString().contains(answer))
+                {  
+                    // System.out.println(stats.get(i).getResultTime()); // Printer alle indenfor f.eks. crawl eller bryst - dog ikke sorteret efter hurtigste tid.
+                    // Nedenfor sorterer (via comparator metoden) efter hurtigste tid, men printer alle linier hvergang den finder "answer" >:/
+                    Collections.sort(stats, new Statistic());
+                    System.out.println("Printer hele liste for hver gang den finder 'answer'");
+                    for(Statistic s:stats){
+                        System.out.println("Id: " + s.getUserId() + " - Tid: " + s.getResultTime() + " - Printer desværre alle discipliner: " + s.getDisciplin());
+                        
+                    }
+                }
             }
-            
+
         }catch(Exception e)
             {
                 System.out.println(e);
             }
 
     }
+    
+    // Bruges til at sortere arraylisten, så hurtigste tid (resultTime) kommer først
+    @Override
+    public int compare(Statistic stat1, Statistic stat2) {          
+        if(stat1.getResultTime() < stat2.getResultTime()) {
+            return -1;
+        }else{
+            return 1;
+        }
+    }  
 
     public void printIndividualResult(){
         Scanner input = new Scanner(System.in);
@@ -192,8 +204,6 @@ public class Statistic{
             System.out.println(e);
         }
 
-
-
     }
 
     public void setResultTime(int resultTime){
@@ -235,8 +245,9 @@ public class Statistic{
         return userId;
     }
 
+    @Override
     public String toString(){
-        return "Id: " + userId + " - Disciplin: " + disciplin + " - Placering: " + swimPlacement + " - Tid: " + resultTime;
+        return contest + swimPlacement + disciplin + userId + resultTime;
     }
 
 
