@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
 
 
 public class Statistic{
@@ -102,12 +103,50 @@ public class Statistic{
             {
                 System.out.println(e);
             }
-      
+    
     }
 
     public void printTop5(){
 
+        Scanner input = new Scanner(System.in);
+        try{
+
+            File g = new File("Stats.txt");
+
+            g.createNewFile();
+ 
+            Scanner scan1 = new Scanner(g);
+            ArrayList<Statistic> stats = new ArrayList<Statistic>();
+
+            while(scan1.hasNextLine())
+            {
+                stats.add(new Statistic(scan1.nextInt(),scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
+            }
+
+		    System.out.print("Tast hvilken disciplin du vil have en top5 over ");
+            String result = input.next();
+
+            for(int i = 0; i < stats.size(); i++)
+            {
+        
+                if(stats.get(i).toString().contains(result))
+                {
+                    System.out.println();
+                    /* Collections.sort(stats);
+                    for(Statistic counter: stats){
+                        System.out.println(counter);
+                    */ } 
+                }
+            
+        }catch(Exception e)
+            {
+                System.out.println(e);
+            }
+
+
+        
     }
+
 
     public void printIndividualResult(){
         

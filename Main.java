@@ -19,11 +19,12 @@ public class Main{
         System.out.println("Tast 2 for at ændret oplysningerne for eksisterende medlem ");
         System.out.println("Tast 3 for at slette et medlem ");
         System.out.println("Tast 4 for at tilføj statistic");
-        System.out.println("Tast 5 for at logge af systemet ");
+        System.out.println("Tast 5 for at se top 5 over en specifik disciplin");
+        System.out.println("Tast 6 for at logge af systemet ");
         
 
         int choice=inputMenu.nextInt();
-        if(choice>5||choice<0){
+        if(choice>6||choice<0){
             System.out.println("forkert valg");
         }else{
             switch (choice) {
@@ -40,8 +41,11 @@ public class Main{
                         stats.createStatistic();
                 break;
 
+                case 5:
+                        stats.printTop5();
+                break;
 
-                case  5:
+                case  6:
                     System.out.print("Du logges nu ud af systemet..");
                     System.exit(0);
                 break;
