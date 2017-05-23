@@ -17,8 +17,9 @@ public class Main{
         System.out.println("Tast 1 for at oprette et nyt medlem ");
         System.out.println("Tast 2 for at ændret oplysningerne for eksisterende medlem ");
         System.out.println("Tast 3 for at slette et medlem ");
-        System.out.println("Tast 4 for at logge af systemet ");
-        System.out.println("Tast 5 for at tilføj statistic");
+        System.out.println("Tast 4 for at tilføj statistic");
+        System.out.println("Tast 5 for at logge af systemet ");
+        
 
         int choice=inputMenu.nextInt();
         if(choice>5||choice<0){
@@ -35,13 +36,13 @@ public class Main{
                 break;
 
                 case 4:
-                System.out.print("Du logges nu ud af systemet..");
-                System.exit(0);
+                        user1.createStatistic();
                 break;
 
 
                 case  5:
-                    user1.createStatistic();
+                    System.out.print("Du logges nu ud af systemet..");
+                    System.exit(0);
                 break;
 
                 default:

@@ -17,6 +17,7 @@ public class User {
     private boolean competitionswimmer = false;
     private boolean admin = false ;
     private boolean activemembership;
+    private Statistic statistics;
 
 
     private int resultTime;
@@ -29,7 +30,8 @@ public class User {
 
 
 
-      public User(String firstname, String lastname, int age, String email, int phone, boolean activemembership, boolean competitionswimmer, boolean admin, String contest, String disciplin, int placering, int resultTime) {
+      public User(int userid, String firstname, String lastname, int age, String email, int phone, boolean activemembership, boolean competitionswimmer, boolean admin, String contest, String disciplin, int placering, int resultTime) {
+        this.userid= userid;
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
@@ -67,7 +69,7 @@ public class User {
                      
                      
                      //members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
-                     members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean(), scan.next(), scan.next(), scan.nextInt(), scan.nextInt()));
+                     members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean(), scan.next(), scan.next(), scan.nextInt(), scan.nextInt()));
                 }
 
 
@@ -78,6 +80,9 @@ public class User {
                 System.out.print("Tast efternavn ");
                 String lastname = input.next();
                 
+                System.out.println("Tast et unikt id");
+                int userid = input.nextInt();
+
                 System.out.print("Tast alder ");
                 int age = input.nextInt();
 
@@ -98,14 +103,14 @@ public class User {
 
                 // adds the newly made member to our arraylist
                 // har tilføjet stats variablerne til arrayet i et forsøg
-                members.add(new User(firstname, lastname, age, email, phone, activemembership, competition, admin, contest, disciplin, swimPlacement, resultTime));
+                members.add(new User(userid, firstname, lastname, age, email, phone, activemembership, competition, admin, contest, disciplin, swimPlacement, resultTime));
 
                 // Saves the information in our file named Members.text
                 PrintStream file = new PrintStream(f);
                 for(int i = 0; i < members.size(); i++){
                     
                      //forsøg her på at printe mere hvis competitionSwimmer er true
-                     file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
+                     file.print(members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
                      " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " "  + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin() + " " + members.get(i).getContestName()  + " " + members.get(i).getDisciplin() + " " + members.get(i).getSwimPlacement() + " " + members.get(i).getResultTime());   
 
                     
@@ -142,7 +147,7 @@ public class User {
             */
             while(scan.hasNextLine())
             {
-                members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean(), scan.next(), scan.next(), scan.nextInt(), scan.nextInt()));   
+                members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean(), scan.next(), scan.next(), scan.nextInt(), scan.nextInt()));   
             }
 
             for(int i = 0; i < members.size(); i++)
@@ -195,7 +200,7 @@ public class User {
 
                 */
                 // nye lange version af printen
-                 file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
+                 file.print(members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
                      " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " "  + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin() + " " + members.get(i).getContestName()  + " " + members.get(i).getDisciplin() + " " + members.get(i).getSwimPlacement() + " " + members.get(i).getResultTime());
 
                 if(i != members.size() -1)
@@ -231,7 +236,7 @@ public class User {
             */
              while(scan.hasNextLine())
             {
-                members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean(), scan.next(), scan.next(), scan.nextInt(), scan.nextInt()));   
+                members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean(), scan.next(), scan.next(), scan.nextInt(), scan.nextInt()));   
             }
 
         Scanner inputDelete = new Scanner(System.in);
@@ -251,7 +256,7 @@ public class User {
                      " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
             */
             //nye lange print
-             file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
+             file.print(members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
                      " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " "  + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin() + " " + members.get(i).getContestName()  + " " + members.get(i).getDisciplin() + " " + members.get(i).getSwimPlacement() + " " + members.get(i).getResultTime());
             if(i != members.size() -1)
             {
@@ -276,7 +281,7 @@ public class User {
 
 
     }
-
+ 
     //----------------------------------- add statistic --------------------------------------------------------
     public void createStatistic(){
         Scanner input = new Scanner(System.in);
@@ -284,15 +289,20 @@ public class User {
         try{
            
             File f = new File("Members.txt");
+            File g = new File("Stats.txt");
 
+            g.createNewFile();
             f.createNewFile();
 
+        
             Scanner scan = new Scanner(f);
+
+            ArrayList<Statistic> stats = new ArrayList<Statistic>();
             ArrayList<User> members = new ArrayList<User>();
             
             while(scan.hasNextLine())
             {
-                members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean(), scan.next(), scan.next(), scan.nextInt(), scan.nextInt()));   
+                members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean(), scan.next(), scan.next(), scan.nextInt(), scan.nextInt()));   
             }
             
             //--- forsøg slut ----
@@ -301,41 +311,77 @@ public class User {
             {
                // System.out.println(i + " " + members.get(i).getCompetitionswimmer()==true);
                if( members.get(i).getCompetitionswimmer()==true){
-                System.out.println(i + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());   
+                System.out.println(i + " " + "unikt id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());   
              }
             }
              
-            System.out.print ("Hvilket medlem vil du tilføje svømmetider på? ");
+            System.out.print ("vælg unikt id på det medlem du vil tilføje stats på ");
             int number = input.nextInt();
 
             System.out.print("Tast svømmekonkurrencens navn ");
             String contest = input.next();
-            members.get(number).setContestName(contest);
+            //members.get(number).setContestName(contest);
 
-             System.out.print("Tast svømmedisciplin ");
-             String disciplin = input.next();
-             members.get(number).setDisciplin(disciplin);
+            System.out.print("Tast svømmedisciplin ");
+            String disciplin = input.next();
+            //members.get(number).setDisciplin(disciplin);
             
-             System.out.print("Tast svømmerens placering ");
-             int swimPlacement = input.nextInt();
-             members.get(number).setSwimPlacement(swimPlacement);
+            System.out.print("Tast svømmerens placering ");
+            int swimPlacement = input.nextInt();
+            //members.get(number).setSwimPlacement(swimPlacement);
 
             System.out.print("Tast svømmerens tid ");
             int resultTime = input.nextInt();
-            members.get(number).setResultTime(resultTime);
+            //members.get(number).setResultTime(resultTime);
 
-            // Gemmer oplysningerne i Members.text
-            PrintStream file = new PrintStream(f);
-            for(int i = 0; i < members.size(); i++)
+
+            stats.add(new Statistic(number, contest, disciplin, swimPlacement, resultTime));
+              PrintStream file = new PrintStream(g);
+            for(int i = 0; i < stats.size(); i++)
             {
-                 file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
-                     " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " "  + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin() + " " + members.get(i).getContestName()  + " " + members.get(i).getDisciplin() + " " + members.get(i).getSwimPlacement() + " " + members.get(i).getResultTime());
+                file.print(stats.get(i).getUserId() + " " + stats.get(i).getContestName() + " " + stats.get(i).getDisciplin() + " " + stats.get(i).getSwimPlacement() + " " + stats.get(i).getResultTime());
+                //members.get(i).getContestName()  + " " + members.get(i).getDisciplin() + " " + members.get(i).getSwimPlacement() + " " + members.get(i).getResultTime())
+                //file.print(number + " " + contest + " " + disciplin + " " + swimPlacement + " " + resultTime);
                 if(i != members.size() -1)
                 {
                     file.println();
                 }
             }
-       
+            
+
+
+
+
+            /*
+            System.out.print("Tast svømmekonkurrencens navn ");
+            String contest = input.next();
+            members.get(number).setContestName(contest);
+
+            System.out.print("Tast svømmedisciplin ");
+            String disciplin = input.next();
+            members.get(number).setDisciplin(disciplin);
+            
+            System.out.print("Tast svømmerens placering ");
+            int swimPlacement = input.nextInt();
+            members.get(number).setSwimPlacement(swimPlacement);
+
+            System.out.print("Tast svømmerens tid ");
+            int resultTime = input.nextInt();
+            members.get(number).setResultTime(resultTime);
+            
+            // Gemmer oplysningerne i Members.text
+            PrintStream file = new PrintStream(g);
+            for(int i = 0; i < members.size(); i++)
+            {
+                file.print(members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getContestName()  + " " + members.get(i).getDisciplin() + " " + members.get(i).getSwimPlacement() + " " + members.get(i).getResultTime());
+                if(i != members.size() -1)
+                {
+                    file.println();
+                }
+            }
+            
+            */
+
             } catch(Exception e)
             {
                 System.out.println(e);
@@ -433,7 +479,7 @@ public class User {
 
     public String toString()
     {
-        return firstname + " " + lastname + " " + age + " " + email + " " + phone + " " + activemembership + " " + competitionswimmer + " " + admin;
+        return userid + " " + firstname + " " + lastname + " " + age + " " + email + " " + phone + " " + activemembership + " " + competitionswimmer + " " + admin;
     }
 
     //-------------------------------------Statistic getter/setters ------------------------------------------------------------------
@@ -453,6 +499,11 @@ public class User {
         this.contest=contest;
     }
 
+    public void setUserId(int userid){
+        this.userid=userid;
+    
+    }
+
     public int getResultTime(){
         return resultTime;
     }
@@ -469,6 +520,10 @@ public class User {
         return contest;
     }
     
+
+    public int getUserId(){
+        return userid;
+    }
     /*
     public String toString2(){
         return contest + disciplin + swimPlacement + resultTime;

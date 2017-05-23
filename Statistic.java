@@ -14,7 +14,7 @@ public class Statistic{
 
     
 
-    public Statistic(int userId, int resultTime, String disciplin, int swimplacement, String contest){
+    public Statistic(int userId, String contest,  String disciplin, int swimplacement, int resultTime){
         this.userId=userId;
         this.resultTime=resultTime;
         this.disciplin=disciplin;
@@ -59,6 +59,8 @@ public class Statistic{
         this.contest=contest;
     }
 
+
+     
     public int getResultTime(){
         return resultTime;
     }
@@ -75,6 +77,10 @@ public class Statistic{
         return contest;
     }
     
+
+    public int getUserId(){
+        return userId;
+    }
 
     public String toString(){
         return contest + disciplin + swimPlacement + resultTime;
