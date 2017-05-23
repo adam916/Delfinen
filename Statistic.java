@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
 
 
 public class Statistic{
@@ -14,12 +15,12 @@ public class Statistic{
 
     
 
-    public Statistic(int userId, String contest,  String disciplin, int swimplacement, int resultTime){
+    public Statistic(int userId, String contest,  String disciplin, int swimPlacement, int resultTime){
         this.userId=userId;
-        this.resultTime=resultTime;
+        this.contest=contest;
         this.disciplin=disciplin;
         this.swimPlacement=swimPlacement;
-        this.contest=contest;
+        this.resultTime=resultTime;
     }
 
     public Statistic(){
@@ -31,16 +32,172 @@ public class Statistic{
 
   
     public void createStatistic(){
-      
+        Scanner input = new Scanner(System.in);
+       
+        try{
+           
+            File f = new File("Members.txt");
+            File g = new File("Stats.txt");
 
+            g.createNewFile();
+            f.createNewFile();
+        
+            Scanner scan = new Scanner(f);
+            Scanner scan1 = new Scanner(g);
+
+            ArrayList<Statistic> stats = new ArrayList<Statistic>();
+            ArrayList<User> members = new ArrayList<User>();
+            
+            while(scan.hasNextLine())
+            {
+                members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
+            }
+            while(scan1.hasNextLine())
+            {
+                stats.add(new Statistic(scan1.nextInt(),scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
+            }
+
+            
+            //--- forsøg slut ----
+
+            for(int i = 0; i < members.size(); i++)
+            {
+                // System.out.println(i + " " + members.get(i).getCompetitionswimmer()==true);
+                if( members.get(i).getCompetitionswimmer()==true){
+                    System.out.println("Unikt id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());   
+                }
+            }
+             
+            System.out.print ("Tast unikt id på det medlem du vil tilføje stats på ");
+            int number = input.nextInt();
+
+            System.out.print("Tast svømmekonkurrencens navn ");
+            String contest = input.next();
+            //members.get(number).setContestName(contest);
+
+            System.out.print("Tast svømmedisciplin ");
+            String disciplin = input.next();
+            //members.get(number).setDisciplin(disciplin);
+            
+            System.out.print("Tast svømmerens placering ");
+            int swimPlacement = input.nextInt();
+            //members.get(number).setSwimPlacement(swimPlacement);
+
+            System.out.print("Tast svømmerens tid ");
+            int resultTime = input.nextInt();
+            //members.get(number).setResultTime(resultTime);
+
+
+            stats.add(new Statistic(number, contest, disciplin, swimPlacement, resultTime));
+
+            PrintStream file = new PrintStream(g);
+            for(int i = 0; i < stats.size(); i++)
+            {
+                file.print(stats.get(i).getUserId() + " " + stats.get(i).getContestName() + " " + stats.get(i).getDisciplin() + " " + stats.get(i).getSwimPlacement() + " " + stats.get(i).getResultTime());
+                if(i != stats.size() -1)
+                {
+                    file.println();
+                }
+            }
+            } catch(Exception e)
+            {
+                System.out.println(e);
+            }
+    
     }
 
     public void printTop5(){
 
+        Scanner input = new Scanner(System.in);
+        try{
+
+            File g = new File("Stats.txt");
+
+            g.createNewFile();
+ 
+            Scanner scan1 = new Scanner(g);
+            ArrayList<Statistic> stats = new ArrayList<Statistic>();
+
+            while(scan1.hasNextLine())
+            {
+                stats.add(new Statistic(scan1.nextInt(),scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
+            }
+
+		    System.out.print("Tast hvilken disciplin du vil have en top5 over ");
+            String result = input.next();
+
+            for(int i = 0; i < stats.size(); i++)
+            {
+        
+                if(stats.get(i).toString().contains(result))
+                {
+                    System.out.println();
+                    /* Collections.sort(stats);
+                    for(Statistic counter: stats){
+                        System.out.println(counter);
+                    */ } 
+                }
+            
+        }catch(Exception e)
+            {
+                System.out.println(e);
+            }
+
+
+        
     }
 
+
     public void printIndividualResult(){
+        Scanner input = new Scanner(System.in);
+        try{
+           
+            File f = new File("Members.txt");
+            File g = new File("Stats.txt");
+
+            g.createNewFile();
+            f.createNewFile();
         
+            Scanner scan = new Scanner(f);
+            Scanner scan1 = new Scanner(g);
+
+            ArrayList<Statistic> stats = new ArrayList<Statistic>();
+            ArrayList<User> members = new ArrayList<User>();
+            
+            while(scan.hasNextLine())
+            {
+                members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
+            }
+            while(scan1.hasNextLine())
+            {
+                stats.add(new Statistic(scan1.nextInt(),scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
+            }     
+
+
+            System.out.println("vælg en svømmer at se resultater fra");
+            for(int i=0; i<members.size(); i++)
+            {
+                System.out.println(" id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());
+                
+            }
+            int choiceSwimmer = input.nextInt();
+            for(int j=0; j<stats.size(); j++)
+            {
+                stats.get(j);
+                if(stats.get(j).getUserId()==choiceSwimmer)
+                {
+                //System.out.println(stats.get(i))
+                System.out.println("Contest: " + stats.get(j).getContestName() + " - Disciplin: " + stats.get(j).getDisciplin() + " - Placering: " + stats.get(j).getSwimPlacement() + " - Tid: " + stats.get(j).getResultTime());
+                }
+            }
+
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
+
+
+
     }
 
     public void setResultTime(int resultTime){
@@ -51,7 +208,7 @@ public class Statistic{
         this.disciplin=disciplin;
     }
 
-    public void setSwimPlacement(int swimplacement){
+    public void setSwimPlacement(int swimPlacement){
         this.swimPlacement=swimPlacement;
     }
 

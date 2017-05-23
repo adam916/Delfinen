@@ -9,6 +9,7 @@ public class Main{
     public static void main(String[] args){
        
        User user1 = new User();
+       Statistic stats = new Statistic();
 
 
        Scanner inputMenu = new Scanner(System.in);
@@ -18,11 +19,13 @@ public class Main{
         System.out.println("Tast 2 for at ændret oplysningerne for eksisterende medlem ");
         System.out.println("Tast 3 for at slette et medlem ");
         System.out.println("Tast 4 for at tilføj statistic");
-        System.out.println("Tast 5 for at logge af systemet ");
+        System.out.println("Tast 5 for at se top 5 over en specifik disciplin");
+        System.out.println("Tast 6 for at se individuelle resultater");
+        System.out.println("Tast 7 for at logge af systemet ");
         
 
         int choice=inputMenu.nextInt();
-        if(choice>5||choice<0){
+        if(choice>7||choice<0){
             System.out.println("forkert valg");
         }else{
             switch (choice) {
@@ -36,11 +39,18 @@ public class Main{
                 break;
 
                 case 4:
-                        user1.createStatistic();
+                        stats.createStatistic();
                 break;
 
+                case 5:
+                        stats.printTop5();
+                break;
 
-                case  5:
+                case  6:
+                        stats.printIndividualResult();
+                break;
+
+                case  7:
                     System.out.print("Du logges nu ud af systemet..");
                     System.exit(0);
                 break;
