@@ -7,3 +7,12 @@
 1 DM Bryst 2 11
 4 DM Bryst 3 12
 4 VM Bryst 3 13
+5 VM Bryst 5 16
+5 VM Crawl 5 16
+5 EM Crawl 4 15
+9 VM Bryst 4 15
+9 VM Crawl 3 13
+9 DM Bryst 4 14
+7 DM Bryst 5 16
+6 DM Bryst 6 17
+6 VM Bryst 7 17

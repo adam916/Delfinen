@@ -124,29 +124,25 @@ public class Statistic{
             }
 
 		    System.out.print("Tast hvilken disciplin du vil have en top5 over ");
-            String result = input.next();
+            String inputDisciplin = input.nextLine();
+            System.out.println("Du har valgt at få en top 5 over følgende svømmedisciplin: " + inputDisciplin);
+            System.out.println("Hurtigste tid først og faldende tider derfra ");
 
             for(int i = 0; i < stats.size(); i++)
             {
         
-                if(stats.get(i).toString().contains(result))
+                if(stats.get(i).getDisciplin().equalsIgnoreCase(inputDisciplin))
                 {
-                    System.out.println();
-                    /* Collections.sort(stats);
-                    for(Statistic counter: stats){
-                        System.out.println(counter);
-                    */ } 
-                }
+                    System.out.println(stats.get(i).getResultTime());
+                } 
+            }
             
         }catch(Exception e)
             {
                 System.out.println(e);
             }
 
-
-        
     }
-
 
     public void printIndividualResult(){
         Scanner input = new Scanner(System.in);
@@ -240,7 +236,7 @@ public class Statistic{
     }
 
     public String toString(){
-        return contest + disciplin + swimPlacement + resultTime;
+        return "Unikt id: " + userId + " - Disciplin: " + disciplin + " - Placering: " + swimPlacement + " - Tid: " + resultTime;
     }
 
 
