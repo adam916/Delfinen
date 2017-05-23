@@ -64,11 +64,11 @@ public class Statistic{
             {
                 // System.out.println(i + " " + members.get(i).getCompetitionswimmer()==true);
                 if( members.get(i).getCompetitionswimmer()==true){
-                    System.out.println("Unikt id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());   
+                    System.out.println("Id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());   
                 }
             }
              
-            System.out.print ("Tast unikt id på det medlem du vil tilføje stats på ");
+            System.out.print ("Tast id på det medlem du vil tilføje statistik på ");
             int number = input.nextInt();
 
             System.out.print("Tast svømmekonkurrencens navn ");
@@ -170,10 +170,10 @@ public class Statistic{
             }     
 
 
-            System.out.println("vælg en svømmer at se resultater fra");
+            System.out.println("Vælg en svømmer at se resultater fra");
             for(int i=0; i<members.size(); i++)
             {
-                System.out.println(" id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());
+                System.out.println(" Id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());
                 
             }
             int choiceSwimmer = input.nextInt();
@@ -183,7 +183,7 @@ public class Statistic{
                 if(stats.get(j).getUserId()==choiceSwimmer)
                 {
                 //System.out.println(stats.get(i))
-                System.out.println("Contest: " + stats.get(j).getContestName() + " - Disciplin: " + stats.get(j).getDisciplin() + " - Placering: " + stats.get(j).getSwimPlacement() + " - Tid: " + stats.get(j).getResultTime());
+                System.out.println("Konkurrence: " + stats.get(j).getContestName() + " - Disciplin: " + stats.get(j).getDisciplin() + " - Placering: " + stats.get(j).getSwimPlacement() + " - Tid: " + stats.get(j).getResultTime());
                 }
             }
 
@@ -236,7 +236,7 @@ public class Statistic{
     }
 
     public String toString(){
-        return "Unikt id: " + userId + " - Disciplin: " + disciplin + " - Placering: " + swimPlacement + " - Tid: " + resultTime;
+        return "Id: " + userId + " - Disciplin: " + disciplin + " - Placering: " + swimPlacement + " - Tid: " + resultTime;
     }
 
 

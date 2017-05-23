@@ -168,15 +168,15 @@ public class User {
             int phone = input.nextInt();
             members.get(number).setPhone(phone);
 
-            System.out.print("ny aktivt medlemsskab status? (true/false) ");
+            System.out.print("Ny aktivt medlemsskab status? (true/false) ");
             boolean activemembership = input.nextBoolean();
             members.get(number).setActivemembership(activemembership);
 
-            System.out.print("ny konkurrencesvømmer status? (true/false) ");
+            System.out.print("Ny konkurrencesvømmer status? (true/false) ");
             boolean competition = input.nextBoolean();
             members.get(number).setCompetitionswimmer(competition);
 
-            System.out.print("ny admin rettigheder status? (true/false) ");
+            System.out.print("Ny admin rettigheder status? (true/false) ");
             boolean admin = input.nextBoolean();
             members.get(number).setAdmin(admin);
 
