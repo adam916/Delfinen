@@ -1,4 +1,7 @@
-adam johnson 24 adam@adam.com 2323 true true false
-egon egon 21 egon@ 32323 true true true
-ole olsen 2323 ole@ole 23242143 false false false
-john madsen 21 john@john.com 2547535 true true true
+1 adam ziebe 26 adam@adam.com 23242526 true true false
+3 john jensen 98 john@jensen 27266554 true true false
+4 morten pallesen 64 morten@morten.dk 6556854 true true false
+5 ole olsen 14 ole@ole.dk 54643456 true false false
+6 bob hansen 43 bob@bob.dk 54345654 true false false
+7 Allan Olsen 54 allan@olsen 43567546 true true false
+8 Tonny Carlsen 23 tn@mail.dk 3040404 true true false
