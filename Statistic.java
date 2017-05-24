@@ -156,7 +156,7 @@ public class Statistic implements Comparator<Statistic>{
         }
     }  
 
-    public void printIndividualResult(){
+  public void printIndividualResult(){
         Scanner input = new Scanner(System.in);
         try{
            
@@ -182,20 +182,32 @@ public class Statistic implements Comparator<Statistic>{
             }     
 
 
-            System.out.println("Vælg en svømmer at se resultater fra");
+            System.out.println("vælg en svømmer at se resultater fra");
+            
             for(int i=0; i<members.size(); i++)
             {
-                System.out.println(" Id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());
-                
+                if(members.get(i).getCompetitionswimmer()==true)
+                {
+                    System.out.println(" id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());
+                }
             }
             int choiceSwimmer = input.nextInt();
-            for(int j=0; j<stats.size(); j++)
+
+            for(int j = 0; j<members.size(); j++)
             {
-                stats.get(j);
-                if(stats.get(j).getUserId()==choiceSwimmer)
+                if(choiceSwimmer==members.get(j).getUserId())
                 {
-                //System.out.println(stats.get(i))
-                System.out.println("Konkurrence: " + stats.get(j).getContestName() + " - Disciplin: " + stats.get(j).getDisciplin() + " - Placering: " + stats.get(j).getSwimPlacement() + " - Tid: " + stats.get(j).getResultTime());
+                    System.out.println("du har valgt " + members.get(j).getFirstname() + " " + members.get(j).getLastname()+ "'s resultater: ");
+                }
+            }
+            
+            for(int k=0; k<stats.size(); k++)
+            {
+                stats.get(k);
+                if(stats.get(k).getUserId()==choiceSwimmer)
+                {
+                
+                System.out.println("Konkurrence " + stats.get(k).getContestName() + " - Disciplin: " + stats.get(k).getDisciplin() + " - Placering: " + stats.get(k).getSwimPlacement() + " - Tid: " + stats.get(k).getResultTime());
                 }
             }
 
@@ -203,6 +215,8 @@ public class Statistic implements Comparator<Statistic>{
         {
             System.out.println(e);
         }
+
+
 
     }
 
