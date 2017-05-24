@@ -15,6 +15,7 @@ public class Main{
        Scanner inputMenu = new Scanner(System.in);
        boolean menuLoop;
        while(menuLoop=true){
+        System.out.println("-------------------------------------------------------------");   
         System.out.println("Tast 1 for at oprette et nyt medlem ");
         System.out.println("Tast 2 for at ændret oplysningerne for eksisterende medlem ");
         System.out.println("Tast 3 for at slette et medlem ");

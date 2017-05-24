@@ -123,22 +123,34 @@ public class Statistic implements Comparator<Statistic>{
 		    System.out.print("Tast hvilken disciplin du vil have en top5 over ");
             String answer = input.nextLine();
             System.out.println("Du har valgt at få en top 5 over følgende svømmedisciplin: " + answer);
-
-            for(int i = 0; i < stats.size(); i++)
-            {
-                if(stats.get(i).toString().contains(answer))
-                {  
-                    // System.out.println(stats.get(i).getResultTime()); // Printer alle indenfor f.eks. crawl eller bryst - dog ikke sorteret efter hurtigste tid.
-                    // Nedenfor sorterer (via comparator metoden) efter hurtigste tid, men printer alle linier hvergang den finder "answer" >:/
-                    Collections.sort(stats, new Statistic());
-                    System.out.println("Printer hele liste for hver gang den finder 'answer'");
-                    for(Statistic s:stats){
-                        System.out.println("Id: " + s.getUserId() + " - Tid: " + s.getResultTime() + " - Printer desværre alle discipliner: " + s.getDisciplin());
-                        
-                    }
+                //count gør så vi kun får det hele en gang
+                int count=1;
+                for(int i = 0; i < stats.size(); i++)
+                {
+                        //if(stats.get(i).toString().contains(answer))
+                        if(stats.get(i).getDisciplin().equalsIgnoreCase(answer)&&count==1)
+                        {  
+                            count++;
+                            //System.out.println(stats.get(i).getResultTime()); // Printer alle indenfor f.eks. crawl eller bryst - dog ikke sorteret efter hurtigste tid.
+                            // Nedenfor sorterer (via comparator metoden) efter hurtigste tid, men printer alle linier hvergang den finder "answer" >:/
+                            Collections.sort(stats, new Statistic());
+                            
+                                    //cpunt2 begrænser til 5 visninger
+                                    int count2=0;
+                                    for(Statistic s:stats)
+                                    {
+                                        //begrænser til valgte disciplin og kun 5;
+                                        if(answer.equalsIgnoreCase(s.getDisciplin())&&count2<5)
+                                        {   
+                                             count2++;
+                                            System.out.println("Id: " + s.getUserId() + " - Tid: " + s.getResultTime() + " - Disciplin: " + s.getDisciplin());   
+                                                        
+                                        }
+                                    }
+                        }   
                 }
-            }
-
+            //count resettes så men kan søge igen    
+            count=1;
         }catch(Exception e)
             {
                 System.out.println(e);
@@ -181,9 +193,8 @@ public class Statistic implements Comparator<Statistic>{
                 stats.add(new Statistic(scan1.nextInt(),scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
             }     
 
-
+            //Looper igennem svømmerne sortere dem fra der ikke er komkurrencesvømmere
             System.out.println("vælg en svømmer at se resultater fra");
-            
             for(int i=0; i<members.size(); i++)
             {
                 if(members.get(i).getCompetitionswimmer()==true)
@@ -193,6 +204,7 @@ public class Statistic implements Comparator<Statistic>{
             }
             int choiceSwimmer = input.nextInt();
 
+            //printer navnet af den valgte svømmer             
             for(int j = 0; j<members.size(); j++)
             {
                 if(choiceSwimmer==members.get(j).getUserId())
