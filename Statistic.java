@@ -5,26 +5,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Arrays;
-import java.lang.Iterable;
-
 
 public class Statistic implements Comparator<Statistic>{
+    private String date;
     private int userId;
     private int resultTime;
     private String disciplin;
     private int swimPlacement;
     private String contest;
 
-    ArrayList<Statistic> fastestTime = new ArrayList<Statistic>();
     ArrayList<Statistic> stats = new ArrayList<Statistic>();
 
-    public Statistic(ArrayList<Statistic> stats) {         
-    this.stats = stats;    
-    }  
-
-    public Statistic(int userId, String contest,  String disciplin, int swimPlacement, int resultTime){
+    public Statistic(String date, int userId, String contest, String disciplin, int swimPlacement, int resultTime){
+        this.date=date;
         this.userId=userId;
         this.contest=contest;
         this.disciplin=disciplin;
@@ -59,7 +52,7 @@ public class Statistic implements Comparator<Statistic>{
             }
             while(scan1.hasNextLine())
             {
-                stats.add(new Statistic(scan1.nextInt(),scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
+                stats.add(new Statistic(scan1.next(), scan1.nextInt(), scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
             }
 
             for(int i = 0; i < members.size(); i++)
@@ -69,10 +62,13 @@ public class Statistic implements Comparator<Statistic>{
                 }
             }
              
-            System.out.print ("Tast id på det medlem du vil tilføje statistik på ");
+            System.out.print("Tast id på det medlem du vil tilføje statistik på ");
             int number = input.nextInt();
 
-            System.out.print("Tast svømmekonkurrencens navn ");
+            System.out.print("Tast dato for konkurrencen (format 25/05/2017) ");
+            String date = input.next();
+
+            System.out.print("Tast konkurrencens navn ");
             String contest = input.next();
 
             System.out.print("Tast svømmedisciplin ");
@@ -84,12 +80,12 @@ public class Statistic implements Comparator<Statistic>{
             System.out.print("Tast svømmerens tid ");
             int resultTime = input.nextInt();
 
-            stats.add(new Statistic(number, contest, disciplin, swimPlacement, resultTime));
+            stats.add(new Statistic(date, number, contest, disciplin, swimPlacement, resultTime));
 
             PrintStream file = new PrintStream(g);
             for(int i = 0; i < stats.size(); i++)
             {
-                file.print(stats.get(i).getUserId() + " " + stats.get(i).getContestName() + " " + stats.get(i).getDisciplin() + " " + stats.get(i).getSwimPlacement() + " " + stats.get(i).getResultTime());
+                file.print(stats.get(i).getUserId() + " " + stats.get(i).getDate() + " " + stats.get(i).getContestName() + " " + stats.get(i).getDisciplin() + " " + stats.get(i).getSwimPlacement() + " " + stats.get(i).getResultTime());
                 if(i != stats.size() -1)
                 {
                     file.println();
@@ -117,39 +113,37 @@ public class Statistic implements Comparator<Statistic>{
 
             while(scan1.hasNextLine())
             {
-                stats.add(new Statistic(scan1.nextInt(),scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
+                stats.add(new Statistic(scan1.next(), scan1.nextInt(), scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
             }
 
 		    System.out.print("Tast hvilken disciplin du vil have en top5 over ");
             String answer = input.nextLine();
             System.out.println("Du har valgt at få en top 5 over følgende svømmedisciplin: " + answer);
-                //count gør så vi kun får det hele en gang
+                // Count makes sure we only get the results of the disciplin ones
                 int count=1;
                 for(int i = 0; i < stats.size(); i++)
                 {
-                        //if(stats.get(i).toString().contains(answer))
                         if(stats.get(i).getDisciplin().equalsIgnoreCase(answer)&&count==1)
                         {  
                             count++;
-                            //System.out.println(stats.get(i).getResultTime()); // Printer alle indenfor f.eks. crawl eller bryst - dog ikke sorteret efter hurtigste tid.
-                            // Nedenfor sorterer (via comparator metoden) efter hurtigste tid, men printer alle linier hvergang den finder "answer" >:/
+                            // Beneath sorts (through the comparator method) the fastest time (resultTime) 
                             Collections.sort(stats, new Statistic());
                             
-                                    //cpunt2 begrænser til 5 visninger
+                                    // Count2 limits to 5 showings
                                     int count2=0;
                                     for(Statistic s:stats)
                                     {
-                                        //begrænser til valgte disciplin og kun 5;
+                                        // Limit the chosen disciplin to show the first 5
                                         if(answer.equalsIgnoreCase(s.getDisciplin())&&count2<5)
                                         {   
                                              count2++;
-                                            System.out.println("Id: " + s.getUserId() + " - Tid: " + s.getResultTime() + " - Disciplin: " + s.getDisciplin());   
+                                            System.out.println("Id: " + s.getUserId() + " - Tid: " + s.getResultTime() + " - Disciplin: " + s.getDisciplin() + " - Dato: " + s.getDate());   
                                                         
                                         }
                                     }
                         }   
                 }
-            //count resettes så men kan søge igen    
+            // Count resets so you can do another search   
             count=1;
         }catch(Exception e)
             {
@@ -158,7 +152,7 @@ public class Statistic implements Comparator<Statistic>{
 
     }
     
-    // Bruges til at sortere arraylisten, så hurtigste tid (resultTime) kommer først
+    // Used to sort out the arraylist to show lowest resultTime value first
     @Override
     public int compare(Statistic stat1, Statistic stat2) {          
         if(stat1.getResultTime() < stat2.getResultTime()) {
@@ -168,7 +162,7 @@ public class Statistic implements Comparator<Statistic>{
         }
     }  
 
-  public void printIndividualResult(){
+    public void printIndividualResult(){
         Scanner input = new Scanner(System.in);
         try{
            
@@ -190,26 +184,26 @@ public class Statistic implements Comparator<Statistic>{
             }
             while(scan1.hasNextLine())
             {
-                stats.add(new Statistic(scan1.nextInt(),scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
+                stats.add(new Statistic(scan1.next(), scan1.nextInt(), scan1.next(), scan1.next(), scan1.nextInt(), scan1.nextInt()));
             }     
 
-            //Looper igennem svømmerne sortere dem fra der ikke er komkurrencesvømmere
-            System.out.println("vælg en svømmer at se resultater fra");
+            // Loops through swimmer to sort off the non-comp-swimmer
+            System.out.println("Vælg en svømmer at se resultater fra");
             for(int i=0; i<members.size(); i++)
             {
                 if(members.get(i).getCompetitionswimmer()==true)
                 {
-                    System.out.println(" id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());
+                    System.out.println(" Id: " + members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname());
                 }
             }
             int choiceSwimmer = input.nextInt();
 
-            //printer navnet af den valgte svømmer             
+            // Prints the name of chosen swimmer             
             for(int j = 0; j<members.size(); j++)
             {
                 if(choiceSwimmer==members.get(j).getUserId())
                 {
-                    System.out.println("du har valgt " + members.get(j).getFirstname() + " " + members.get(j).getLastname()+ "'s resultater: ");
+                    System.out.println("Du har valgt " + members.get(j).getFirstname() + " " + members.get(j).getLastname()+ "'s resultater: ");
                 }
             }
             
@@ -218,8 +212,7 @@ public class Statistic implements Comparator<Statistic>{
                 stats.get(k);
                 if(stats.get(k).getUserId()==choiceSwimmer)
                 {
-                
-                System.out.println("Konkurrence " + stats.get(k).getContestName() + " - Disciplin: " + stats.get(k).getDisciplin() + " - Placering: " + stats.get(k).getSwimPlacement() + " - Tid: " + stats.get(k).getResultTime());
+                System.out.println("Dato: " + stats.get(k).getDate() + " - Konkurrence: " + stats.get(k).getContestName() + " - Disciplin: " + stats.get(k).getDisciplin() + " - Placering: " + stats.get(k).getSwimPlacement() + " - Tid: " + stats.get(k).getResultTime());
                 }
             }
 
@@ -227,8 +220,6 @@ public class Statistic implements Comparator<Statistic>{
         {
             System.out.println(e);
         }
-
-
 
     }
 
@@ -248,6 +239,9 @@ public class Statistic implements Comparator<Statistic>{
         this.contest=contest;
     }
 
+    public void setDate(String date) {
+        this.date=date;
+    }
 
      
     public int getResultTime(){
@@ -271,9 +265,13 @@ public class Statistic implements Comparator<Statistic>{
         return userId;
     }
 
+    public String getDate(){
+        return date;
+    }
+
     @Override
     public String toString(){
-        return contest + swimPlacement + disciplin + userId + resultTime;
+        return date + contest + swimPlacement + disciplin + userId + resultTime;
     }
 
 

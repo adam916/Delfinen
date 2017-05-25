@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
 public class User {
     private int userid;
     private String firstname;
@@ -13,18 +11,13 @@ public class User {
     private int age;
     private String email;
     private int phone;
-    private String paymentmethod;
     private boolean competitionswimmer = false;
     private boolean admin = false ;
     private boolean activemembership;
-    private Statistic statistics;
-
 
     ArrayList<User> members = new ArrayList<User>();
 
-
-
-      public User(int userid, String firstname, String lastname, int age, String email, int phone, boolean activemembership, boolean competitionswimmer, boolean admin) {
+    public User(int userid, String firstname, String lastname, int age, String email, int phone, boolean activemembership, boolean competitionswimmer, boolean admin) {
         this.userid= userid;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -36,90 +29,77 @@ public class User {
         this.admin = admin;
     }
 
-
     public User() {
     }
 
+    public void createMember() {
+    
+        try{
+            Scanner input = new Scanner(System.in);
 
-      
-        public void createMember() {
-        
-            try{
-                Scanner input = new Scanner(System.in);
+            File f = new File("Members.txt");
 
-                File f = new File("Members.txt");
+            f.createNewFile();
 
-                f.createNewFile();
-
-                Scanner scan = new Scanner(f);
-                ArrayList<User> members = new ArrayList<User>();
-                
-                while(scan.hasNextLine())
-                {
-                     
-                     
-                     //members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
-                     members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));
-                }
-
-
-                System.out.println("Du har valgt at oprette et nyt medlem" );
-                System.out.print("Tast fornavn ");
-                String firstname = input.next();
-
-                System.out.print("Tast efternavn ");
-                String lastname = input.next();
-                
-                System.out.println("Tast et unikt id");
-                int userid = input.nextInt();
-
-                System.out.print("Tast alder ");
-                int age = input.nextInt();
-
-                System.out.print("Tast email ");
-                String email = input.next();
-
-                System.out.print("Tast telefonnummer ");
-                int phone = input.nextInt();
-
-                System.out.print("Aktivt medlemsskab? (true/false) ");
-                boolean activemembership = input.nextBoolean();
-
-                System.out.print("Konkurrencesvømmer? (true/false) ");
-                boolean competition = input.nextBoolean();
-
-                System.out.print("Admin rettigheder? (true/false) ");
-                boolean admin = input.nextBoolean();
-
-                // adds the newly made member to our arraylist
-                // har tilføjet stats variablerne til arrayet i et forsøg
-                members.add(new User(userid, firstname, lastname, age, email, phone, activemembership, competition, admin));
-
-                // Saves the information in our file named Members.text
-                PrintStream file = new PrintStream(f);
-                for(int i = 0; i < members.size(); i++){
-                    
-                     //forsøg her på at printe mere hvis competitionSwimmer er true
-                     file.print(members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
-                     " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " "  + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());   
-
-                    
-                    if(i != members.size() -1)
-                    {
-                        file.println();
-                    }
-
-
-                }
+            Scanner scan = new Scanner(f);
+            ArrayList<User> members = new ArrayList<User>();
             
-                } catch(Exception e)
+            while(scan.hasNextLine())
+            {   
+                members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));
+            }
+
+            System.out.println("Du har valgt at oprette et nyt medlem" );
+            System.out.print("Tast fornavn ");
+            String firstname = input.next();
+
+            System.out.print("Tast efternavn ");
+            String lastname = input.next();
+            
+            System.out.println("Tast et unikt id");
+            int userid = input.nextInt();
+
+            System.out.print("Tast alder ");
+            int age = input.nextInt();
+
+            System.out.print("Tast email ");
+            String email = input.next();
+
+            System.out.print("Tast telefonnummer ");
+            int phone = input.nextInt();
+
+            System.out.print("Aktivt medlemsskab? (true/false) ");
+            boolean activemembership = input.nextBoolean();
+
+            System.out.print("Konkurrencesvømmer? (true/false) ");
+            boolean competition = input.nextBoolean();
+
+            System.out.print("Admin rettigheder? (true/false) ");
+            boolean admin = input.nextBoolean();
+
+            // Adds the newly made member to our arraylist
+            members.add(new User(userid, firstname, lastname, age, email, phone, activemembership, competition, admin));
+
+            // Saves the information in our file named Members.text
+            PrintStream file = new PrintStream(f);
+            for(int i = 0; i < members.size(); i++){
+                file.print(members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
+                " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " "  + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());   
+                
+                if(i != members.size() -1)
                 {
-                    System.out.println(e);
+                    file.println();
                 }
+            }
+        
+            } catch(Exception e)
+            {
+                System.out.println(e);
+            }
     }
 
     public void editMember() {
-    Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
        
         try{
            
@@ -129,12 +109,7 @@ public class User {
 
             Scanner scan = new Scanner(f);
             ArrayList<User> members = new ArrayList<User>();
-            /*
-            while(scan.hasNextLine())
-            {
-                members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
-            }
-            */
+
             while(scan.hasNextLine())
             {
                 members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
@@ -168,7 +143,7 @@ public class User {
             int phone = input.nextInt();
             members.get(number).setPhone(phone);
 
-            System.out.print("Ny aktivt medlemsskab status? (true/false) ");
+            System.out.print("Ny aktiv medlemsskabsstatus? (true/false) ");
             boolean activemembership = input.nextBoolean();
             members.get(number).setActivemembership(activemembership);
 
@@ -184,12 +159,6 @@ public class User {
             PrintStream file = new PrintStream(f);
             for(int i = 0; i < members.size(); i++)
             {
-                /*
-                 file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
-                     " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
-
-                */
-                // nye lange version af printen
                  file.print(members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
                      " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " "  + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
 
@@ -207,68 +176,54 @@ public class User {
       
     }
 
-
-    //delete member
+    // Delete member
     public void deleteMember(){
-          try{
+        try{
             
             File f = new File("Members.txt");
 
-            //f.createNewFile();
 
             Scanner scan = new Scanner(f);
             ArrayList<User> members = new ArrayList<User>();
-            /*
+
             while(scan.hasNextLine())
-            {
-                members.add(new User(scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
-            }
-            */
-             while(scan.hasNextLine())
             {
                 members.add(new User(scan.nextInt(), scan.next(), scan.next(), scan.nextInt(), scan.next(), scan.nextInt(), scan.nextBoolean(), scan.nextBoolean(), scan.nextBoolean()));   
             }
 
-        Scanner inputDelete = new Scanner(System.in);
-		for(int i = 0; i < members.size(); i++)
-		{
-		    System.out.println(i + " " + members.get(i));  
-		}
-		System.out.println("Hvilket medlem skal slettes? ");
-		int deleteNumb = inputDelete.nextInt();
-		members.remove(deleteNumb);			
-		System.out.println("Medlem er nu slettet ");
-        PrintStream file = new PrintStream(f);
-        for(int i = 0; i < members.size(); i++)
-        {
-            /*
-             file.print(members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
-                     " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " " + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
-            */
-            //nye lange print
-             file.print(members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
-                     " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " "  + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
-            if(i != members.size() -1)
+            Scanner inputDelete = new Scanner(System.in);
+            for(int i = 0; i < members.size(); i++)
             {
-                file.println();
+                System.out.println(i + " " + members.get(i));  
             }
-        }
+            System.out.println("Hvilket medlem skal slettes? ");
+            int deleteNumb = inputDelete.nextInt();
+            members.remove(deleteNumb);			
+            System.out.println("Medlem er nu slettet ");
+            PrintStream file = new PrintStream(f);
+            for(int i = 0; i < members.size(); i++)
+            {
+                file.print(members.get(i).getUserId() + " " + members.get(i).getFirstname() + " " + members.get(i).getLastname() + " " + members.get(i).getAge() + " " + members.get(i).getEmail() +
+                " " + members.get(i).getPhone() + " " + members.get(i).getActivemembership() + " "  + members.get(i).getCompetitionswimmer() + " " + members.get(i).getAdmin());
+                
+                if(i != members.size() -1)
+                {
+                    file.println();
+                }
+            }
 
-        for(int i = 0; i < members.size(); i++)
-		{
-		    System.out.println(i + " " + members.get(i));  
-		}
+            for(int i = 0; i < members.size(); i++)
+            {
+                System.out.println(i + " " + members.get(i));  
+            }
 
-        }catch(Exception e) 
-        {
-            System.out.println(e);
-        }
-
+            }catch(Exception e) 
+            {
+                System.out.println(e);
+            }
 
     }
  
-
-
     // Admin login with preset password
     public void isAdmin() {
         System.out.print("Tast kodeord for at logge ind som admin: ");
@@ -313,9 +268,6 @@ public class User {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
-    public void setPaymentmethod(String paymentmethod) {
-        this.paymentmethod = paymentmethod;
-    }
 
     // End of setters - now getters for most of our attributes.
     public String getFirstname() {
@@ -335,9 +287,6 @@ public class User {
     }
     public int getUserId() {
         return userid;
-    }
-    public String getPaymentmethod() {
-        return paymentmethod;
     }
 
     public boolean getCompetitionswimmer() {
