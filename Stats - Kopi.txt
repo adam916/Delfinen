@@ -1,9 +1,0 @@
-1 VM Bryst 1 12
-1 VM Crawl 2 11
-1 EM Crawl 1 10
-8 VM Bryst 2 13
-8 VM Crawl 1 10
-8 DM Bryst 1 10
-1 DM Bryst 2 11
-4 DM Bryst 3 12
-4 VM Bryst 3 13
