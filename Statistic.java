@@ -117,6 +117,9 @@ public class Statistic implements Comparator<Statistic>{
             }
 
 		    System.out.print("Tast hvilken disciplin du vil have en top5 over ");
+            System.out.println("som fx. bryst, crawl, butterfly, ryg ect..");
+            
+            
             String answer = input.nextLine();
             System.out.println("Du har valgt at få en top 5 over følgende svømmedisciplin: " + answer);
                 // Count makes sure we only get the results of the disciplin ones
